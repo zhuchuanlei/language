@@ -2,28 +2,53 @@
 <html> 
     <head> 
         <title>language</title>
+        <style>
+            textarea{
+                width: 400px;
+                height: 300px;
+                padding: 10px;
+                outline: 0;
+            }
+        </style>
     </head> 
     
     <body>
-        <script>
-            let ch = {
-                'name': '名称',
-            }
-            var body = document.getElementsByTagName('body')[0];
-            let table = '<table border="1" cellspacing="0">';
-            let keys = Object.keys(ch);
-            keys.forEach(function(key){
-                let tr = `<tr>
-                            <td>${key}</td>
-                            <td>${ch[key]}</td>
-                        </tr>`;
-                table += tr;
-            });
-            table += '</table>';
+            <div>将多语言复制进来</div>
+            <textarea></textarea>
+            <button onclick="preView()">预览</button>
+            <button onclick="exportExcel()">导出</button>
+            <div class="table"></div>
+            <script src="https://cuikangjie.github.io/JsonExportExcel/dist/JsonExportExcel.min.js"></script>
+ 
+            <script>
+                preView = () => {
+                    let textarea = document.getElementsByTagName('textarea')[0];
+                    let obj = textarea.value;
+                    obj = obj.replace(/\s*/g,"");
+                    if(!obj) return alert('请维护')
+                    obj = eval('(' + obj + ')');
 
-
-            body.innerHTML = table;
-        </script>
+                    var body = document.getElementsByTagName('body')[0];
+                    let table = '<table border="1" cellspacing="0">';
+                    let keys = Object.keys(obj);
+                    
+                    keys.forEach(function(key){
+                        let tr = `<tr>
+                                    <td>${key}</td>
+                                    <td>${obj[key]}</td>
+                                </tr>`;
+                        table += tr;
+                    });
+                    table += '</table>';
+                    
+                    let tableDiv = document.getElementsByClassName('table')[0];
+                    tableDiv.innerHTML = table;
+                }
+                exportExcel = () => {
+                    console.log(1);
+                }
+            </script>
+        
 
     </body>
 </html>
