@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html> 
+    <head> 
+        <title>language</title>
+    </head> 
+    
+    <body>
+        <script>
+            let ch = {
+                'name': '名称',
+            }
+            var body = document.getElementsByTagName('body')[0];
+            let table = '<table border="1" cellspacing="0">';
+            let keys = Object.keys(ch);
+            keys.forEach(function(key){
+                let tr = `<tr>
+                            <td>${key}</td>
+                            <td>${ch[key]}</td>
+                        </tr>`;
+                table += tr;
+            });
+            table += '</table>';
+
+
+            body.innerHTML = table;
+        </script>
+
+    </body>
+</html>
